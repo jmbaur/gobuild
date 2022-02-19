@@ -1,0 +1,9 @@
+[[builders]]
+name = "list files"
+url = "/foo"
+commands = ["ls", "-a"]
+
+[[builders]]
+name = "print environment"
+url = "/bar"
+commands = ["env"]
