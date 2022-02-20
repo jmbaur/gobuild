@@ -42,7 +42,7 @@ func (b *Builder) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			fmt.Fprint(w, string(data))
 			return
 		} else {
-			getTempl.Execute(w, nil)
+			getTempl.Execute(w, b)
 			return
 		}
 	case http.MethodPost:
@@ -66,5 +66,15 @@ func (b *Builder) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-const getText = `<html>TODO</html>`
-const postText = `<html>TODO</html>`
+const getText = `<html>
+<h1>{{.Name}}</h1>
+<h3>{{.Commands}}</h3>
+{{range $build := .Builds}}
+<div>
+<h5>Time: {{$build.Time}}</h5>
+<h5>Status: {{$build.Status}}</h5>
+<p>Output: {{$build.Output}}</p>
+</div>
+{{end}}
+</html>`
+const postText = `<html>OK</html>`
