@@ -1,0 +1,5 @@
+<!DOCTYPE html>
+<h1>GoBuild</h1>
+{{range $builder := .builders}}
+<a href="{{$builder.url}}">{{$builder.name}}</a>
+{{end}}

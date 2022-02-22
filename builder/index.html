@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<h1>{{.name}}</h1>
+<h3>{{.commands}}</h3>
+<button onclick="post()">Start build</button>
+{{range $build := .builds}}
+<div>
+  <h5>Start time: {{$build.start}}</h5>
+  <h5>End time: {{$build.end}}</h5>
+  <h5>Status: {{$build.status}}</h5>
+  <pre>Output: {{$build.output}}</pre>
+</div>
+{{end}}
+<script>
+  function post() {
+    fetch(window.location.href, { method: "POST" })
+      .then((res) => {
+        if (
+          res.headers.get("content-type") &&
+          res.headers
+            .get("content-type")
+            .toLowerCase()
+            .indexOf("application/json") >= 0
+        ) {
+          return res.json();
+        } else {
+          throw new TypeError();
+        }
+      })
+      .then(console.log)
+      .catch(console.error);
+  }
+</script>
