@@ -42,7 +42,6 @@ func main() {
 	http.HandleFunc("/favicon.ico", func(w http.ResponseWriter, r *http.Request) {
 		if _, err := fmt.Fprint(w, favicon); err != nil {
 			log.Println(err)
-			w.WriteHeader(http.StatusInternalServerError)
 		}
 	})
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
