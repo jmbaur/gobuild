@@ -18,6 +18,7 @@ func (b *Build) marshalMap() map[string]interface{} {
 	return map[string]interface{}{
 		"start":  b.Start.Format(time.RFC3339),
 		"end":    b.End.Format(time.RFC3339),
+		"done":   b.Status == StatusFailed || b.Status == StatusFinished,
 		"output": b.Output,
 		"status": b.Status.String(),
 	}
